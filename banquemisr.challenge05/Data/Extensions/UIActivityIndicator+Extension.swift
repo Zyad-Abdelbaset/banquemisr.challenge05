@@ -32,7 +32,7 @@ extension UIActivityIndicatorView {
 
     // Hide the activity indicator with animation
     func hideActivityIndicator() {
-        UIView.animate(withDuration: 0.3) {
+        UIView.animate(withDuration: 0.5) {
             self.stopAnimating()
             self.isHidden = true
         }
