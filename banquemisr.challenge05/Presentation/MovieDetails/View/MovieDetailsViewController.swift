@@ -1,13 +1,13 @@
 //
-//  MoviesViewController.swift
+//  MovieDetailsViewController.swift
 //  banquemisr.challenge05
 //
-//  Created by zyad Baset on 27/09/2024.
+//  Created by zyad Baset on 28/09/2024.
 //
 
 import UIKit
 
-class MoviesViewController: UIViewController {
+class MovieDetailsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
