@@ -11,26 +11,25 @@ struct MovieDetailsEntity: Codable {
     let adult: Bool //-
     let backdropPath: String //-
     let budget: Int //-
-    let genres: String //-
+    let genres: [Genre] //-
     let id: Int //-
     let originalLanguage, overview: String //-
-    let popularity: Double //-
     let releaseDate: String //-
     let runtime: Int //-
     let status, title: String //-
-    let voteAverage: Double
-    let voteCount: Int
 
     enum CodingKeys: String, CodingKey {
         case adult
         case backdropPath = "backdrop_path"
-        case budget, genres, id
+        case budget, genres,id
         case originalLanguage = "original_language"
-        case overview, popularity
+        case overview
         case releaseDate = "release_date"
         case runtime
         case status, title
-        case voteAverage = "vote_average"
-        case voteCount = "vote_count"
     }
+}
+// MARK: - Genre
+struct Genre: Codable {
+    let name: String
 }
