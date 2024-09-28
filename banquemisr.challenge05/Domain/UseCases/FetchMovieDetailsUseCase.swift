@@ -20,6 +20,6 @@ class FetchMovieDetailsUseCaseImpl: FetchMovieDetailsUseCase {
         repository.getMovieDetails(movieId: MovieId){ result,connectionFlag in
             // Additional domain logic can be added here if needed
             completion(result,connectionFlag)
+            
         }
-    }
-}
+    }}
