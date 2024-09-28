@@ -18,20 +18,14 @@ struct MoviesResponse: Codable {
 
 // MARK: - Result
 struct MoviesList: Codable {
-    let adult: Bool
     let id: Int
     let posterPath, releaseDate, title: String
-    let voteAverage: Double
-    let voteCount: Int
 
     enum CodingKeys: String, CodingKey {
-        case adult
         case id
         case posterPath = "poster_path"
         case releaseDate = "release_date"
         case title
-        case voteAverage = "vote_average"
-        case voteCount = "vote_count"
     }
 }
 

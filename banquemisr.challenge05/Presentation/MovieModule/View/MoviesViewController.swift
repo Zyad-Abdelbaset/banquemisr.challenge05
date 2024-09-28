@@ -9,7 +9,9 @@ import UIKit
 
 class MoviesViewController: UIViewController {
 
+    @IBOutlet weak var imgViewNoData: UIImageView!
     @IBOutlet weak var tableView: UITableView!
+    var activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView()
     var viewModel:MoviesViewModel!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,26 +22,37 @@ class MoviesViewController: UIViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        activityIndicator.setupActivityIndicator(in: self.view)
+        activityIndicator.showActivityIndicator()
+        self.tableView.isHidden = true
+        self.imgViewNoData.isHidden = true
         setUpNavigationTitle()
-        
+        viewModel.fetchMovies()
     }
     func setupBeforeLoading(){
-        viewModel.fetchMovies()
         tableView.delegate=self
         tableView.dataSource=self
         let nib = UINib(nibName: "MovieCell", bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: "MovieCell")
         viewModel.reloadTV = {
             self.tableView.reloadData()
+            self.tableView.isHidden = false
+            self.setUpNavigationTitle()
+            self.activityIndicator.hideActivityIndicator()
         }
         viewModel.noResult={str in 
             self.presentAlert(title: "Error", message: str, buttonTitle: "OK")
+            if(self.viewModel.arrMovies.count == 0){
+                self.tableView.isHidden = true
+                self.imgViewNoData.isHidden = false
+            }
+            
         }
     }
 
 }
 
-//MARK: - TableView SetUp
+//MARK: - TableView SetUp Protocol
 extension MoviesViewController:UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         viewModel.arrMovies.count
@@ -61,18 +74,18 @@ extension MoviesViewController:UITableViewDelegate,UITableViewDataSource{
 extension MoviesViewController{
     func setUpSelectedTabBarData(){
         switch self.tabBarController?.tabBar.selectedItem?.tag{
-        case 0 :viewModel=MoviesViewModel(endPoint: .nowPlaying);print("in now play")
-        case 1 :viewModel=MoviesViewModel(endPoint: .upcoming);print("in upcoming")
-        case 2 :viewModel=MoviesViewModel(endPoint: .popular);print("error in popular")
-        default : viewModel = MoviesViewModel(endPoint: .nowPlaying);print("Error in default")
+        case 0 :viewModel=MoviesViewModel(endPoint: .nowPlaying);//print("in now play")
+        case 1 :viewModel=MoviesViewModel(endPoint: .upcoming);//print("in upcoming")
+        case 2 :viewModel=MoviesViewModel(endPoint: .popular);//print("error in popular")
+        default : viewModel = MoviesViewModel(endPoint: .nowPlaying);//print("Error in default")
         }
     }
     func setUpNavigationTitle(){
         switch self.tabBarController?.tabBar.selectedItem?.tag{
-        case 0 :self.tabBarController?.title = "Now Playing";print("in now play")
-        case 1 :self.tabBarController?.title = "UpComing";print("in upcoming")
-        case 2 :self.tabBarController?.title = "Popular";print("error in popular")
-        default : viewModel = MoviesViewModel(endPoint: .nowPlaying);print("Error in default")
+        case 0 :self.tabBarController?.title = "Now Playing(\(viewModel.onlineFlag))";//print("in now play")
+        case 1 :self.tabBarController?.title = "UpComing(\(viewModel.onlineFlag))";//print("in upcoming")
+        case 2 :self.tabBarController?.title = "Popular(\(viewModel.onlineFlag))";//print("error in popular")
+        default : viewModel = MoviesViewModel(endPoint: .nowPlaying);//print("Error in default")
         }
     }
     func setUpTabBarItems(){

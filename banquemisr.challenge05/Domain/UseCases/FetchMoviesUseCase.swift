@@ -7,7 +7,7 @@
 
 import Foundation
 protocol FetchMoviesUseCase {
-    func execute(endPoint:MovieListEndPoints,completion: @escaping (Result<[Movie],Error>) -> Void)
+    func execute(endPoint:MovieListEndPoints,completion: @escaping (Result<[MoviesList],MovieError>,Bool) -> Void)
 }
 class FetchMoviesUseCaseImpl: FetchMoviesUseCase {
     private let repository: MovieRepository
@@ -16,10 +16,10 @@ class FetchMoviesUseCaseImpl: FetchMoviesUseCase {
         self.repository = repository
     }
     
-    func execute(endPoint:MovieListEndPoints,completion: @escaping (Result<[Movie], Error>) -> Void) {
-        repository.getMovies(endPoint: endPoint) { result in
+    func execute(endPoint:MovieListEndPoints,completion: @escaping (Result<[MoviesList], MovieError>,Bool) -> Void) {
+        repository.getMovies(endPoint: endPoint) { result,connectionFlag in
             // Additional domain logic can be added here if needed
-            completion(result)
+            completion(result,connectionFlag)
         }
     }
 }
