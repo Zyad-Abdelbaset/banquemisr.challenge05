@@ -26,9 +26,9 @@ class MovieAPI {
             }
         }
     }
-    func fetchMovies(endPoint:MovieListEndPoints,completion: @escaping (Result<[MoviesList], MovieError>) -> Void) {
+    func fetchMovies<T: Codable>(endPoint:String,model: T.Type,completion: @escaping (Result<T, MovieError>) -> Void) {
         // URL
-        guard let url = URL(string: "\(baseUrl)\(endPoint.rawValue)?api_key=\(apiKey)") else { completion(.failure(.apiError)); return  }
+        guard let url = URL(string: "\(baseUrl)\(endPoint)?api_key=\(apiKey)") else { completion(.failure(.apiError)); return  }
         // Request and force cache it
         let request = URLRequest(url: url, cachePolicy: .returnCacheDataElseLoad, timeoutInterval: 60)
         //DataTask
@@ -43,12 +43,12 @@ class MovieAPI {
                 completion(.failure(.invalidResponse))
                 return
             }
-            DataParser.parsingData(data: data, model: MoviesResponse.self) { movieResponse, error in
+            DataParser.parsingData(data: data, model: model.self) { movieResponse, error in
                 if let error = error{
                     completion(.failure(error))
                     return
                 }
-                completion(.success(movieResponse!.movies))
+                completion(.success(movieResponse!))
             }
         }.resume()
     }
