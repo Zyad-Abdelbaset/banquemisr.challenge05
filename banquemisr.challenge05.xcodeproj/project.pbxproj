@@ -217,18 +217,18 @@
 			isa = PBXGroup;
 			children = (
 				3C1C6BE12CA872F2004973A5 /* MovieDetails */,
-				3C1C6BCA2CA63A69004973A5 /* MovieModule */,
+				3C1C6BCA2CA63A69004973A5 /* MoviesListModule */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
 		};
-		3C1C6BCA2CA63A69004973A5 /* MovieModule */ = {
+		3C1C6BCA2CA63A69004973A5 /* MoviesListModule */ = {
 			isa = PBXGroup;
 			children = (
 				3C1C6BCC2CA63A87004973A5 /* View */,
 				3C1C6BCB2CA63A7F004973A5 /* ViewModel */,
 			);
-			path = MovieModule;
+			path = MoviesListModule;
 			sourceTree = "<group>";
 		};
 		3C1C6BCB2CA63A7F004973A5 /* ViewModel */ = {
