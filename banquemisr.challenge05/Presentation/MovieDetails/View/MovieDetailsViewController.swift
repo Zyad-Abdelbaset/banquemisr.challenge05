@@ -9,21 +9,36 @@ import UIKit
 
 class MovieDetailsViewController: UIViewController {
 
+    @IBOutlet weak var lblOverView: UILabel!
+    @IBOutlet weak var lblRunTime: UILabel!
+    @IBOutlet weak var lblReleaseDate: UILabel!
+    @IBOutlet weak var lblOriginalLanguage: UILabel!
+    @IBOutlet weak var lblBudget: UILabel!
+    @IBOutlet weak var lblStatus: UILabel!
+    @IBOutlet weak var lblGeners: UILabel!
+    @IBOutlet weak var lblTitle: UILabel!
+    @IBOutlet weak var imgViewPoster: UIImageView!
+    var activityIndicator = UIActivityIndicatorView()
+    var viewModel:MovieDetailsViewModel!
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        viewModel.putData={
+            print(self.viewModel.movieId)
+            self.lblTitle.text = self.viewModel.model.title+"\(self.viewModel.model.adult ? "(+18)" : "")"
+            self.lblGeners.text = "Geners: "+self.viewModel.model.genres.map({ item in
+                item.name
+            }).joined(separator: " - ")
+            self.lblBudget.text = "Budget: \(self.viewModel.model.budget)"
+            self.lblStatus.text = "Status: "+self.viewModel.model.status
+            self.lblRunTime.text = "Run time: \(self.viewModel.model.runtime)"
+            self.lblOverView.text = self.viewModel.model.overview
+            self.lblReleaseDate.text = "Release Date: "+self.viewModel.model.releaseDate
+            self.lblOriginalLanguage.text = "Original language: "+self.viewModel.model.originalLanguage
+            
+            
+        }
         // Do any additional setup after loading the view.
     }
-    
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
