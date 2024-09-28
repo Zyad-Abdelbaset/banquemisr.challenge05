@@ -11,10 +11,22 @@ class MovieAPI {
     private let baseUrl = "https://api.themoviedb.org/3/movie/"
     private let apiKey = "95a89943de5af0ccb83f6a10a3c30c21"
     private let imageUrlHeader = "https://image.tmdb.org/t/p/"
-    private let posterSize = "w400"
+    private let posterSize = "w500"
     private init(){}
-    func fetchMovies(endPoint:MovieListEndPoints,completion: @escaping (Result<[Movie], MovieError>) -> Void) {
-        // API logic to fetch movies data
+    
+    
+    func fetchMovieImage(imgPath:String,completion: @escaping (Result<Data, MovieError>) -> Void){
+        //checkImageURL
+        guard let url = URL(string: "\(imageUrlHeader)\(posterSize)\(imgPath)") else {completion(.failure(.invalidResponse)); return}
+        DispatchQueue.global().async {
+            if let data = try? Data(contentsOf: url) {
+                completion(.success(data))
+            }else{
+                completion(.failure(.invalidResponse))
+            }
+        }
+    }
+    func fetchMovies(endPoint:MovieListEndPoints,completion: @escaping (Result<[MoviesList], MovieError>) -> Void) {
         // URL
         guard let url = URL(string: "\(baseUrl)\(endPoint.rawValue)?api_key=\(apiKey)") else { completion(.failure(.apiError)); return  }
         // Request and force cache it
@@ -22,7 +34,7 @@ class MovieAPI {
         //DataTask
         URLSession.shared.dataTask(with: request) { data, response, error in
             //check Error
-            if let error = error{
+            if error != nil{
                 completion(.failure(.apiError))
                 return
             }
