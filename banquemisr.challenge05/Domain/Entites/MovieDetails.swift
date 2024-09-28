@@ -7,7 +7,7 @@
 
 import Foundation
 // MARK: - MoviesResponse1
-struct MoviesResponse1: Codable {
+struct MovieDetailsEntity: Codable {
     let adult: Bool //-
     let backdropPath: String //-
     let budget: Int //-
