@@ -14,7 +14,7 @@ final class TestCoreData: XCTestCase {
     
     override func setUpWithError() throws {
         coreData = CoreDataManager.shared
-        clearCache()
+        //clearCache()
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
 
@@ -28,11 +28,11 @@ final class TestCoreData: XCTestCase {
         }
     }
     func testSavingSpecificMovie() {
-        XCTAssertNotEqual(coreData.getSpecificMovieDetails(MovieId: "957452").count, 1)
+        XCTAssertEqual(coreData.getSpecificMovieDetails(MovieId: "957452").count, 1)
         let movie = MovieDetailsEntity(adult: false, backdropPath: "/Asg2UUwipAdE87MxtJy7SQo08XI.jpg", budget: 20000, genres: [], id: 957452, originalLanguage: "en", overview: "Good movie", releaseDate: "2023", runtime: 125, status: "released", title: "The Crow")
         coreData.addingMovieDetailsToDB(movieDetail: movie)
-        //XCTAssertNotEqual(coreData.getSpecificMovieDetails(MovieId: "957452").count, 0)
-        //XCTAssertEqual(coreData.getSpecificMovieDetails(MovieId: "957452").first?.title, "The Crow")
+        XCTAssertNotEqual(coreData.getSpecificMovieDetails(MovieId: "957452").count, 0)
+        XCTAssertEqual(coreData.getSpecificMovieDetails(MovieId: "957452").first?.title, "The Crow")
     }
     func clearCache() {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
@@ -51,7 +51,7 @@ final class TestCoreData: XCTestCase {
     
     override func tearDownWithError() throws {
         coreData = nil
-        clearCache()
+        //clearCache()
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 

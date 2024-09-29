@@ -35,10 +35,10 @@ final class TestingNetwork: XCTestCase {
         movieAPI!.fetchMovieImage(imgPath: "/Asg2UUwipAdE87MxtJy7SQo08XI.jpg") { result in
             switch result{
             case .success(let data ): XCTAssertNotNil(data, "Nil inside data");myExpectation.fulfill()
-            case .failure(let error): XCTFail("Faild to fetch data\(error.localizedDescription)")
+            case .failure(let error): XCTFail("Faild to fetch data\(error.localizedDescription)");myExpectation.fulfill()
             }
         }
-        waitForExpectations(timeout: 2)
+        waitForExpectations(timeout: 3)
     }
 
 
