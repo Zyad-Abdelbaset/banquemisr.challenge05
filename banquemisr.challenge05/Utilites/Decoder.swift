@@ -13,12 +13,7 @@ class DataParser{
         do{
             let decodedData = try JSONDecoder().decode(model, from: data)
             completion(decodedData, nil)
-        }catch let error{
-            //print("Request failed with error: \(error)")
-            if
-               let errorResponse = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
-              //  print("Error response body: \(errorResponse)")
-            }
+        }catch _{
             completion(nil, .serializationError)
         }
     }
@@ -36,6 +31,15 @@ class DataParser{
         var arrMovie: [MoviesList]=[]
         for item in arr{
             let obj = MoviesList(id: Int(item.id), posterPath: item.poster ?? "", releaseDate: item.releaseDate ?? "No date", title: item.title ?? "No title")
+            
+            arrMovie.append(obj)
+        }
+        return arrMovie
+    }
+    static func converterMovie(movieModel:[MovieDetailsModel])->[MovieDetailsEntity]{
+        var arrMovie: [MovieDetailsEntity]=[]
+        for item in movieModel{
+            let obj = MovieDetailsEntity(adult:item.adult, backdropPath: item.image ?? "", budget: Int(item.budget), genres: [Genre(name: item.geners ?? "")], id: Int(item.id), originalLanguage: item.originalLanguage ?? "", overview: item.overview ?? "", releaseDate: item.releaseDate ?? "", runtime: Int(item.runtime), status: item.status ?? "", title: item.title ?? "No title")
             
             arrMovie.append(obj)
         }

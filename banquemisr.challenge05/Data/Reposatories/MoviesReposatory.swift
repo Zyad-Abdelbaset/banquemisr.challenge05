@@ -8,10 +8,35 @@
 import Foundation
 protocol MovieRepository {
     func getMovies(endPoint:MovieListEndPoints,completion: @escaping (Result<[MoviesList], MovieError>,Bool) -> Void)
+    func getMovieDetails(movieId:String,completion: @escaping (Result<MovieDetailsEntity, MovieError>,Bool) -> Void)
     func getMovieImage(imgPath:String,completion: @escaping (Result<Data, MovieError>) -> Void)
 }
 
 class MovieRepositoryImpl: MovieRepository {
+    func getMovieDetails(movieId: String, completion: @escaping (Result<MovieDetailsEntity, MovieError>, Bool) -> Void) {
+        networkChecker.checkConnectivity { connectionFlag in
+            if connectionFlag {
+                self.api.fetchMovies(endPoint:movieId, model: MovieDetailsEntity.self ) { result in
+                    switch result {
+                    case .success(let movies):
+                        completion(.success(movies),true)
+                        self.coreDataManager.addingMovieDetailsToDB(movieDetail: movies)
+                    case .failure(let error):
+                        print()
+                        completion(.failure(error),true)
+                    }
+                }
+            }else{
+                let arr = self.coreDataManager.getSpecificMovieDetails(MovieId: movieId)
+                if arr.count > 0 {
+                    completion(.success(arr.first!),false)
+                }else{
+                    completion(.failure(.noData),false)
+                }
+            }
+        }
+    }
+    
     private let api: MovieAPI
     private let coreDataManager: CoreDataManager
     private let networkChecker: ConnectionProtocol
@@ -24,14 +49,14 @@ class MovieRepositoryImpl: MovieRepository {
     func getMovies(endPoint:MovieListEndPoints,completion: @escaping (Result<[MoviesList], MovieError>,Bool) -> Void) {
         networkChecker.checkConnectivity { connectionFlag in
             if connectionFlag {
-                self.api.fetchMovies(endPoint:endPoint ) { result in
+                self.api.fetchMovies(endPoint:endPoint.rawValue, model: MoviesResponse.self ) { result in
                     switch result {
                     case .success(let movies):
-                        completion(.success(movies),true)
+                        completion(.success(movies.movies),true)
                         //let serialqueue = DispatchQueue(label: "handling coredata")
                         DispatchQueue.main.async {
                                 //self.coreDataManager.deleteAllMovies(endPoint: endPoint)
-                                self.coreDataManager.addingMoviesToDB(arrMovies: movies, endPoint: endPoint)
+                            self.coreDataManager.addingMoviesToDB(arrMovies: movies.movies, endPoint: endPoint)
                         }
                     case .failure(let error):
                         completion(.failure(error),true)

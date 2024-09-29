@@ -15,7 +15,6 @@ class FetchMovieDetailsUseCaseImpl: FetchMovieDetailsUseCase {
     init(repository: MovieRepository) {
         self.repository = repository
     }
-    
     func execute(MovieId:String,completion: @escaping (Result<MovieDetailsEntity, MovieError>,Bool) -> Void) {
         repository.getMovieDetails(movieId: MovieId){ result,connectionFlag in
             // Additional domain logic can be added here if needed

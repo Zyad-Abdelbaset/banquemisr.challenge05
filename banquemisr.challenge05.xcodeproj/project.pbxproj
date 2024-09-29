@@ -35,6 +35,7 @@
 		3C1C6BE52CA8731C004973A5 /* MovieDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1C6BE42CA8731B004973A5 /* MovieDetailsViewController.swift */; };
 		3C1C6BE72CA87333004973A5 /* MovieDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1C6BE62CA87333004973A5 /* MovieDetailsViewModel.swift */; };
 		3C1C6BE92CA87489004973A5 /* MovieDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1C6BE82CA87489004973A5 /* MovieDetails.swift */; };
+		3C1C6BEB2CA8893E004973A5 /* FetchMovieDetailsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1C6BEA2CA8893E004973A5 /* FetchMovieDetailsUseCase.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -66,6 +67,7 @@
 		3C1C6BE42CA8731B004973A5 /* MovieDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsViewController.swift; sourceTree = "<group>"; };
 		3C1C6BE62CA87333004973A5 /* MovieDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsViewModel.swift; sourceTree = "<group>"; };
 		3C1C6BE82CA87489004973A5 /* MovieDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetails.swift; sourceTree = "<group>"; };
+		3C1C6BEA2CA8893E004973A5 /* FetchMovieDetailsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchMovieDetailsUseCase.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -171,6 +173,7 @@
 			isa = PBXGroup;
 			children = (
 				3C1C6BB92CA62048004973A5 /* FetchMoviesUseCase.swift */,
+				3C1C6BEA2CA8893E004973A5 /* FetchMovieDetailsUseCase.swift */,
 			);
 			path = UseCases;
 			sourceTree = "<group>";
@@ -394,6 +397,7 @@
 				3C1C6B8C2CA604CB004973A5 /* SceneDelegate.swift in Sources */,
 				3C1C6BB82CA61CDA004973A5 /* MoviesList.swift in Sources */,
 				3C1C6BA32CA60BEE004973A5 /* UIActivityIndicator+Extension.swift in Sources */,
+				3C1C6BEB2CA8893E004973A5 /* FetchMovieDetailsUseCase.swift in Sources */,
 				3C1C6BE72CA87333004973A5 /* MovieDetailsViewModel.swift in Sources */,
 				3C1C6BBA2CA62048004973A5 /* FetchMoviesUseCase.swift in Sources */,
 				3C1C6BDC2CA6F280004973A5 /* MovieCellViewModel.swift in Sources */,

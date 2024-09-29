@@ -9,6 +9,7 @@ import UIKit
 
 class MovieDetailsViewController: UIViewController {
 
+    @IBOutlet weak var imgViewNoData: UIImageView!
     @IBOutlet weak var lblOverView: UILabel!
     @IBOutlet weak var lblRunTime: UILabel!
     @IBOutlet weak var lblReleaseDate: UILabel!
@@ -22,6 +23,12 @@ class MovieDetailsViewController: UIViewController {
     var viewModel:MovieDetailsViewModel!
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.imgViewPoster.layer.cornerRadius = 25
+        viewModel.noResult={str in
+            self.presentAlert(title: "Error", message: str, buttonTitle: "OK")
+            self.imgViewNoData.isHidden = false
+            
+        }
         viewModel.putData={
             print(self.viewModel.movieId)
             self.lblTitle.text = self.viewModel.model.title+"\(self.viewModel.model.adult ? "(+18)" : "")"
@@ -30,11 +37,24 @@ class MovieDetailsViewController: UIViewController {
             }).joined(separator: " - ")
             self.lblBudget.text = "Budget: \(self.viewModel.model.budget)"
             self.lblStatus.text = "Status: "+self.viewModel.model.status
-            self.lblRunTime.text = "Run time: \(self.viewModel.model.runtime)"
+            let hours = (self.viewModel.model.runtime) / 60
+            let minutes = (self.viewModel.model.runtime) % 60
+            self.lblRunTime.text = "Run time: \(hours)h \(minutes)m"
             self.lblOverView.text = self.viewModel.model.overview
             self.lblReleaseDate.text = "Release Date: "+self.viewModel.model.releaseDate
             self.lblOriginalLanguage.text = "Original language: "+self.viewModel.model.originalLanguage
             
+            self.viewModel.getMovieImage(completion: { result in
+                switch result{
+                case .success(let data): DispatchQueue.main.async {
+                    self.imgViewPoster.image = UIImage(data: data)
+                }
+                case .failure(_):DispatchQueue.main.async {
+                    self.imgViewPoster.image = UIImage(named: "defaultImage")
+                }
+                    
+                }
+            })
             
         }
         // Do any additional setup after loading the view.

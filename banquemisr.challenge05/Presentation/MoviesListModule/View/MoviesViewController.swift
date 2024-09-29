@@ -28,6 +28,11 @@ class MoviesViewController: UIViewController {
         self.imgViewNoData.isHidden = true
         setUpNavigationTitle()
         viewModel.fetchMovies()
+        viewModel.navigateForward = {str in
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "MovieDetailsViewController")as! MovieDetailsViewController
+            vc.viewModel = MovieDetailsViewModel(movieId:str)
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
     }
     func setupBeforeLoading(){
         tableView.delegate=self
@@ -69,6 +74,9 @@ extension MoviesViewController:UITableViewDelegate,UITableViewDataSource{
         cell.putData()
         return cell
     }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        viewModel.navigateForward("\(viewModel.arrMovies[indexPath.row].id)")
+    }
 }
 //MARK: - SetUp the tabarController
 extension MoviesViewController{
@@ -82,10 +90,10 @@ extension MoviesViewController{
     }
     func setUpNavigationTitle(){
         switch self.tabBarController?.tabBar.selectedItem?.tag{
-        case 0 :self.tabBarController?.title = "Now Playing(\(viewModel.onlineFlag))";//print("in now play")
-        case 1 :self.tabBarController?.title = "UpComing(\(viewModel.onlineFlag))";//print("in upcoming")
-        case 2 :self.tabBarController?.title = "Popular(\(viewModel.onlineFlag))";//print("error in popular")
-        default : viewModel = MoviesViewModel(endPoint: .nowPlaying);//print("Error in default")
+        case 0 :self.tabBarController?.title = "Now Playing(\(viewModel.onlineFlag))"
+        case 1 :self.tabBarController?.title = "UpComing(\(viewModel.onlineFlag))"
+        case 2 :self.tabBarController?.title = "Popular(\(viewModel.onlineFlag))"
+        default : viewModel = MoviesViewModel(endPoint: .nowPlaying);
         }
     }
     func setUpTabBarItems(){

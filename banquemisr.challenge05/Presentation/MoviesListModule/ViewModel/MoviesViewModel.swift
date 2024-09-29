@@ -10,21 +10,14 @@ class MoviesViewModel{
     private let fetchMoviesUseCase: FetchMoviesUseCase
     var arrMovies:[MoviesList]=[]
     var onlineFlag:String = "Checking"
-    //private let connection: ConnectionProtocol
     var reloadTV : (()->Void) = {}
     var noResult : ((String)->Void) = {_ in }
-    var navigateForward : (()->Void) = {}
+    var navigateForward : ((String)->Void) = {_ in}
     var endPint:MovieListEndPoints
     init(endPoint:MovieListEndPoints){
         fetchMoviesUseCase = FetchMoviesUseCaseImpl(repository: MovieRepositoryImpl())
-        //self.connection = Connection.shared
         self.endPint = endPoint
     }
-//    func checkNetworkConnection(completion: @escaping (Bool) -> Void) {
-//            connection.checkConnectivity { isConnected in
-//                completion(isConnected)
-//            }
-//        }
     func fetchMovies() {
         fetchMoviesUseCase.execute(endPoint: endPint) { [weak self] result,flag in
                 switch result {

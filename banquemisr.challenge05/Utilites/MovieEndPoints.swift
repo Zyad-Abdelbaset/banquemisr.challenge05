@@ -11,5 +11,4 @@ enum MovieListEndPoints:String{
     case nowPlaying = "now_playing"
     case upcoming
     case popular
-    
 }
