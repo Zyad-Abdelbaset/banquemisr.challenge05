@@ -39,7 +39,12 @@ class MovieDetailsViewController: UIViewController {
             self.lblGeners.text = "Geners: "+self.viewModel.model!.genres.map({ item in
                 item.name
             }).joined(separator: " - ")
-            self.lblBudget.text = "Budget: \(self.viewModel.model!.budget)"
+            let numberFormatter = NumberFormatter()
+                numberFormatter.numberStyle = .decimal
+            if let formattedNumber = numberFormatter.string(from: NSNumber(value: self.viewModel.model!.budget)){
+                self.lblBudget.text = "Budget: \(formattedNumber) $"
+            }
+            
             self.lblStatus.text = "Status: "+self.viewModel.model!.status
             let hours = (self.viewModel.model!.runtime) / 60
             let minutes = (self.viewModel.model!.runtime) % 60

@@ -24,7 +24,7 @@ class MoviesViewModel{
                 case .success(let movies):
                     DispatchQueue.main.async {
                         self?.arrMovies = movies
-                        self?.onlineFlag = flag ? "Online" : "Offline"
+                        self?.onlineFlag = flag ? "🟢" : "🔴"
                         self?.reloadTV()
                         if !flag {
                             self?.noResult(MovieError.noConnection.localizedDescription)

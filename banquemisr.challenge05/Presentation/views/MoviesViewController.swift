@@ -90,9 +90,9 @@ extension MoviesViewController{
     }
     func setUpNavigationTitle(){
         switch self.tabBarController?.tabBar.selectedItem?.tag{
-        case 0 :self.tabBarController?.title = "Now Playing(\(viewModel.onlineFlag))"
-        case 1 :self.tabBarController?.title = "UpComing(\(viewModel.onlineFlag))"
-        case 2 :self.tabBarController?.title = "Popular(\(viewModel.onlineFlag))"
+        case 0 :self.tabBarController?.title = "Now Playing \(viewModel.onlineFlag)"
+        case 1 :self.tabBarController?.title = "UpComing \(viewModel.onlineFlag)"
+        case 2 :self.tabBarController?.title = "Popular \(viewModel.onlineFlag)"
         default : viewModel = MoviesViewModel(endPoint: .nowPlaying);
         }
     }
