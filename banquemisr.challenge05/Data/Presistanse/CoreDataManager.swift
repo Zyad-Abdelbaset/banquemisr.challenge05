@@ -7,11 +7,16 @@
 
 import Foundation
 import CoreData
+import UIKit
 
 
 class CoreDataManager{
     static let shared = CoreDataManager()
-    private init(){}
+    private let ad = UIApplication.shared.delegate as! AppDelegate
+    private let context :NSManagedObjectContext!
+    private init(){
+        context = ad.persistentContainer.viewContext
+    }
     func addingMoviesToDB(arrMovies: [MoviesList], endPoint: MovieListEndPoints) {
         // Delete all movies synchronously before starting the additions
         deleteAllMovies(endPoint: endPoint)
@@ -151,7 +156,7 @@ class CoreDataManager{
     private func saveContext() {
         DispatchQueue.main.async {
             do {
-                try context.save()
+                try self.context.save()
             } catch {
                 print("Cannot save in save context")
             }

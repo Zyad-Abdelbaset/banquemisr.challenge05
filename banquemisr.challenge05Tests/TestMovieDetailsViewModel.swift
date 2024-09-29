@@ -1,5 +1,5 @@
 //
-//  MockingMovieDetails.swift
+//  TestMovieDetailsViewModel.swift
 //  banquemisr.challenge05Tests
 //
 //  Created by zyad Baset on 29/09/2024.
@@ -7,7 +7,7 @@
 
 import XCTest
 
-final class MockingMovieDetails: XCTestCase {
+final class TestMovieDetailsViewModel: XCTestCase {
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.

@@ -6,16 +6,39 @@
 //
 
 import XCTest
+@testable import banquemisr_challenge05
 
 final class TestMockingMoviesList: XCTestCase {
 
+    var viewModel: MoviesViewModel!
     override func setUpWithError() throws {
+        viewModel = MoviesViewModel(endPoint: .nowPlaying)
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
 
     override func tearDownWithError() throws {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
+        viewModel = nil
     }
+
+
+    func testFetchMovies(){
+        let opt = OperationQueue()
+        let exp = expectation(description: "Waiting view model finish hitting network")
+        let block1 = BlockOperation {
+            self.viewModel.fetchMovies()
+        }
+        var block2 = BlockOperation()
+        block2.addDependency(block1)
+        block2 = BlockOperation {
+            exp.fulfill()
+            XCTAssertNotEqual(self.viewModel.arrMovies.count, 0)
+        }
+        XCTAssertEqual(viewModel.onlineFlag, "Checking")
+        waitForExpectations(timeout: 3)
+    }
+        
+    
 
     func testExample() throws {
         // This is an example of a functional test case.
@@ -31,5 +54,5 @@ final class TestMockingMoviesList: XCTestCase {
             // Put the code you want to measure the time of here.
         }
     }
-
 }
+
