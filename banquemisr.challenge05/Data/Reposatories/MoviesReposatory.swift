@@ -13,6 +13,14 @@ protocol MovieRepository {
 }
 
 class MovieRepositoryImpl: MovieRepository {
+    private let api: MovieAPI
+    private let coreDataManager: CoreDataManager
+    private let networkChecker: ConnectionProtocol
+    init() {
+        self.api = MovieAPI.shared
+        coreDataManager = CoreDataManager.shared
+        networkChecker = Connection.shared
+    }
     func getMovieDetails(movieId: String, completion: @escaping (Result<MovieDetailsEntity, MovieError>, Bool) -> Void) {
         networkChecker.checkConnectivity { connectionFlag in
             if connectionFlag {
@@ -36,16 +44,6 @@ class MovieRepositoryImpl: MovieRepository {
             }
         }
     }
-    
-    private let api: MovieAPI
-    private let coreDataManager: CoreDataManager
-    private let networkChecker: ConnectionProtocol
-    init() {
-        self.api = MovieAPI.shared
-        coreDataManager = CoreDataManager.shared
-        networkChecker = Connection.shared
-    }
-    
     func getMovies(endPoint:MovieListEndPoints,completion: @escaping (Result<[MoviesList], MovieError>,Bool) -> Void) {
         networkChecker.checkConnectivity { connectionFlag in
             if connectionFlag {

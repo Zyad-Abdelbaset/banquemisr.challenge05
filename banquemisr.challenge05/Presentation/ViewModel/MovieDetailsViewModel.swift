@@ -7,7 +7,7 @@
 
 import Foundation
 class MovieDetailsViewModel{
-    var model:MovieDetailsEntity!
+    var model:MovieDetailsEntity?
     private let fetchMovieDetailsUseCase:FetchMovieDetailsUseCase
     var onlineFlag:String = "Checking"
     var noResult : ((String)->Void) = {_ in }
@@ -22,7 +22,8 @@ class MovieDetailsViewModel{
         fetchMovieDetails()
     }
     func getMovieImage(completion:@escaping (Result<Data,MovieError>)->Void){
-        movieRepo.getMovieImage(imgPath: self.model.backdropPath) { result in
+        self.model = MovieDetailsEntity(adult: true, backdropPath: "/7h6TqPB3ESmjuVbxCxAeB1c9OB1.jpg", budget: 2000, genres: [], id: 1234, originalLanguage: "en", overview: "Good movie", releaseDate: "2024", runtime: 140, status: "released", title: "The Substance")
+        movieRepo.getMovieImage(imgPath: self.model!.backdropPath) { result in
             switch result {
             case .success(let data): completion(.success(data))
             case .failure(let error): completion(.failure(error))

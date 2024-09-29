@@ -31,18 +31,18 @@ class MovieDetailsViewController: UIViewController {
         }
         viewModel.putData={
             print(self.viewModel.movieId)
-            self.lblTitle.text = self.viewModel.model.title+"\(self.viewModel.model.adult ? "(+18)" : "")"
-            self.lblGeners.text = "Geners: "+self.viewModel.model.genres.map({ item in
+            self.lblTitle.text = self.viewModel.model!.title+"\(self.viewModel.model!.adult ? "(+18)" : "")"
+            self.lblGeners.text = "Geners: "+self.viewModel.model!.genres.map({ item in
                 item.name
             }).joined(separator: " - ")
-            self.lblBudget.text = "Budget: \(self.viewModel.model.budget)"
-            self.lblStatus.text = "Status: "+self.viewModel.model.status
-            let hours = (self.viewModel.model.runtime) / 60
-            let minutes = (self.viewModel.model.runtime) % 60
+            self.lblBudget.text = "Budget: \(self.viewModel.model!.budget)"
+            self.lblStatus.text = "Status: "+self.viewModel.model!.status
+            let hours = (self.viewModel.model!.runtime) / 60
+            let minutes = (self.viewModel.model!.runtime) % 60
             self.lblRunTime.text = "Run time: \(hours)h \(minutes)m"
-            self.lblOverView.text = self.viewModel.model.overview
-            self.lblReleaseDate.text = "Release Date: "+self.viewModel.model.releaseDate
-            self.lblOriginalLanguage.text = "Original language: "+self.viewModel.model.originalLanguage
+            self.lblOverView.text = self.viewModel.model!.overview
+            self.lblReleaseDate.text = "Release Date: "+self.viewModel.model!.releaseDate
+            self.lblOriginalLanguage.text = "Original language: "+self.viewModel.model!.originalLanguage
             
             self.viewModel.getMovieImage(completion: { result in
                 switch result{
