@@ -102,13 +102,10 @@
 			children = (
 				3C1C6BB42CA61CA7004973A5 /* Domain */,
 				3C1C6BC92CA63A60004973A5 /* Presentation */,
-				3C1C6BC22CA62CAA004973A5 /* Utilites */,
 				3C1C6BBB2CA62104004973A5 /* Data */,
-				3C1C6BA52CA60C63004973A5 /* View */,
-				3C1C6BA42CA60C52004973A5 /* Core */,
-				3C1C6B922CA604CD004973A5 /* Assets.xcassets */,
+				3C1C6BA42CA60C52004973A5 /* Infrasructur */,
 				3C1C6B972CA604CD004973A5 /* Info.plist */,
-				3C1C6BD62CA6E846004973A5 /* MoviesModel.xcdatamodeld */,
+				3CD7DA532CA901BE009EE6A2 /* Resources */,
 			);
 			path = banquemisr.challenge05;
 			sourceTree = "<group>";
@@ -123,37 +120,19 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		3C1C6BA42CA60C52004973A5 /* Core */ = {
+		3C1C6BA42CA60C52004973A5 /* Infrasructur */ = {
 			isa = PBXGroup;
 			children = (
 				3C1C6B8B2CA604CB004973A5 /* SceneDelegate.swift */,
 				3C1C6B892CA604CB004973A5 /* AppDelegate.swift */,
 			);
-			path = Core;
-			sourceTree = "<group>";
-		};
-		3C1C6BA52CA60C63004973A5 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				3C1C6BAE2CA61446004973A5 /* MovieCell */,
-				3C1C6B942CA604CD004973A5 /* LaunchScreen.storyboard */,
-				3C1C6B8F2CA604CB004973A5 /* Main.storyboard */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		3C1C6BAE2CA61446004973A5 /* MovieCell */ = {
-			isa = PBXGroup;
-			children = (
-				3C1C6BDA2CA6F1CD004973A5 /* ViewModel */,
-				3C1C6BD92CA6F1C7004973A5 /* View */,
-			);
-			path = MovieCell;
+			path = Infrasructur;
 			sourceTree = "<group>";
 		};
 		3C1C6BB42CA61CA7004973A5 /* Domain */ = {
 			isa = PBXGroup;
 			children = (
+				3CD7DA502CA8FFB1009EE6A2 /* Errors */,
 				3C1C6BB62CA61CB6004973A5 /* UseCases */,
 				3C1C6BB52CA61CAE004973A5 /* Entites */,
 			);
@@ -201,75 +180,25 @@
 		3C1C6BBD2CA6212E004973A5 /* DataSource */ = {
 			isa = PBXGroup;
 			children = (
+				3C1C6BC52CA62CD5004973A5 /* MovieEndPoints.swift */,
 				3C1C6BC02CA6227A004973A5 /* MovieAPI.swift */,
 			);
 			path = DataSource;
 			sourceTree = "<group>";
 		};
-		3C1C6BC22CA62CAA004973A5 /* Utilites */ = {
-			isa = PBXGroup;
-			children = (
-				3C1C6BC32CA62CC0004973A5 /* MoviesError.swift */,
-				3C1C6BC52CA62CD5004973A5 /* MovieEndPoints.swift */,
-				3C1C6BC72CA633BB004973A5 /* Decoder.swift */,
-			);
-			path = Utilites;
-			sourceTree = "<group>";
-		};
 		3C1C6BC92CA63A60004973A5 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
-				3C1C6BE12CA872F2004973A5 /* MovieDetails */,
-				3C1C6BCA2CA63A69004973A5 /* MoviesListModule */,
+				3CD7DA522CA900AF009EE6A2 /* views */,
+				3CD7DA512CA900A6009EE6A2 /* ViewModel */,
 			);
 			path = Presentation;
-			sourceTree = "<group>";
-		};
-		3C1C6BCA2CA63A69004973A5 /* MoviesListModule */ = {
-			isa = PBXGroup;
-			children = (
-				3C1C6BCC2CA63A87004973A5 /* View */,
-				3C1C6BCB2CA63A7F004973A5 /* ViewModel */,
-			);
-			path = MoviesListModule;
-			sourceTree = "<group>";
-		};
-		3C1C6BCB2CA63A7F004973A5 /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-				3C1C6BCD2CA63A9A004973A5 /* MoviesViewModel.swift */,
-			);
-			path = ViewModel;
-			sourceTree = "<group>";
-		};
-		3C1C6BCC2CA63A87004973A5 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				3C1C6BCF2CA63DDA004973A5 /* MoviesViewController.swift */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		3C1C6BD92CA6F1C7004973A5 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				3C1C6BB02CA6146A004973A5 /* MovieCell.xib */,
-				3C1C6BAF2CA6146A004973A5 /* MovieCell.swift */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		3C1C6BDA2CA6F1CD004973A5 /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-				3C1C6BDB2CA6F280004973A5 /* MovieCellViewModel.swift */,
-			);
-			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		3C1C6BDF2CA76492004973A5 /* Utilites */ = {
 			isa = PBXGroup;
 			children = (
+				3C1C6BC72CA633BB004973A5 /* Decoder.swift */,
 				3C1C6BD42CA6E10A004973A5 /* NetworkManager.swift */,
 			);
 			path = Utilites;
@@ -283,29 +212,44 @@
 			path = Presistanse;
 			sourceTree = "<group>";
 		};
-		3C1C6BE12CA872F2004973A5 /* MovieDetails */ = {
+		3CD7DA502CA8FFB1009EE6A2 /* Errors */ = {
 			isa = PBXGroup;
 			children = (
-				3C1C6BE32CA87304004973A5 /* ViewModel */,
-				3C1C6BE22CA872FE004973A5 /* View */,
+				3C1C6BC32CA62CC0004973A5 /* MoviesError.swift */,
 			);
-			path = MovieDetails;
+			path = Errors;
 			sourceTree = "<group>";
 		};
-		3C1C6BE22CA872FE004973A5 /* View */ = {
+		3CD7DA512CA900A6009EE6A2 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				3C1C6BE42CA8731B004973A5 /* MovieDetailsViewController.swift */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		3C1C6BE32CA87304004973A5 /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
+				3C1C6BDB2CA6F280004973A5 /* MovieCellViewModel.swift */,
+				3C1C6BCD2CA63A9A004973A5 /* MoviesViewModel.swift */,
 				3C1C6BE62CA87333004973A5 /* MovieDetailsViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		3CD7DA522CA900AF009EE6A2 /* views */ = {
+			isa = PBXGroup;
+			children = (
+				3C1C6B942CA604CD004973A5 /* LaunchScreen.storyboard */,
+				3C1C6B8F2CA604CB004973A5 /* Main.storyboard */,
+				3C1C6BB02CA6146A004973A5 /* MovieCell.xib */,
+				3C1C6BAF2CA6146A004973A5 /* MovieCell.swift */,
+				3C1C6BCF2CA63DDA004973A5 /* MoviesViewController.swift */,
+				3C1C6BE42CA8731B004973A5 /* MovieDetailsViewController.swift */,
+			);
+			path = views;
+			sourceTree = "<group>";
+		};
+		3CD7DA532CA901BE009EE6A2 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				3C1C6BD62CA6E846004973A5 /* MoviesModel.xcdatamodeld */,
+				3C1C6B922CA604CD004973A5 /* Assets.xcassets */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -635,8 +579,7 @@
 				3C1C6BD72CA6E846004973A5 /* MoviesModel.xcdatamodel */,
 			);
 			currentVersion = 3C1C6BD72CA6E846004973A5 /* MoviesModel.xcdatamodel */;
-			name = MoviesModel.xcdatamodeld;
-			path = /Users/zyadbaset/Desktop/Proj/banquemisr.challenge05/banquemisr.challenge05/MoviesModel.xcdatamodeld;
+			path = MoviesModel.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
