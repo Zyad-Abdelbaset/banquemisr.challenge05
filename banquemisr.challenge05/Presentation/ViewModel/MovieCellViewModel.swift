@@ -7,6 +7,8 @@
 
 import Foundation
 class MovieCellViewModel{
+    
+    
     var model:MoviesList
     private let movieRepo:MovieRepository
     init(model:MoviesList){

@@ -8,7 +8,7 @@
 import UIKit
 
 class MoviesViewController: UIViewController {
-
+    
     @IBOutlet weak var imgViewNoData: UIImageView!
     @IBOutlet weak var tableView: UITableView!
     var activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView()
@@ -45,7 +45,7 @@ class MoviesViewController: UIViewController {
             self.setUpNavigationTitle()
             self.activityIndicator.hideActivityIndicator()
         }
-        viewModel.noResult={str in 
+        viewModel.noResult={str in
             self.presentAlert(title: "Error", message: str, buttonTitle: "OK")
             if(self.viewModel.arrMovies.count == 0){
                 self.tableView.isHidden = true
@@ -54,7 +54,7 @@ class MoviesViewController: UIViewController {
             
         }
     }
-
+    
 }
 
 //MARK: - TableView SetUp Protocol
@@ -82,10 +82,10 @@ extension MoviesViewController:UITableViewDelegate,UITableViewDataSource{
 extension MoviesViewController{
     func setUpSelectedTabBarData(){
         switch self.tabBarController?.tabBar.selectedItem?.tag{
-        case 0 :viewModel=MoviesViewModel(endPoint: .nowPlaying);//print("in now play")
-        case 1 :viewModel=MoviesViewModel(endPoint: .upcoming);//print("in upcoming")
-        case 2 :viewModel=MoviesViewModel(endPoint: .popular);//print("error in popular")
-        default : viewModel = MoviesViewModel(endPoint: .nowPlaying);//print("Error in default")
+        case 0 :viewModel=MoviesViewModel(endPoint: .nowPlaying);
+        case 1 :viewModel=MoviesViewModel(endPoint: .upcoming);
+        case 2 :viewModel=MoviesViewModel(endPoint: .popular);
+        default : viewModel = MoviesViewModel(endPoint: .nowPlaying);
         }
     }
     func setUpNavigationTitle(){
@@ -98,16 +98,17 @@ extension MoviesViewController{
     }
     func setUpTabBarItems(){
         if let tabBar = self.tabBarController?.tabBar.items {
-                tabBar[0].title = "now playing"
-                tabBar[0].image = UIImage(systemName: "play.rectangle")
+            tabBar[0].title = "now playing"
+            tabBar[0].image = UIImage(systemName: "play.rectangle")
             tabBar[0].tag = 0
-                
-                tabBar[1].title = "upcoming"
-                tabBar[1].image = UIImage(systemName: "clock.badge.questionmark")
+            
+            tabBar[1].title = "upcoming"
+            tabBar[1].image = UIImage(systemName: "clock.badge.questionmark")
             tabBar[1].tag = 1
-                tabBar[2].title = "popular"
-                tabBar[2].image = UIImage(systemName: "star.square")
+            
+            tabBar[2].title = "popular"
+            tabBar[2].image = UIImage(systemName: "star.square")
             tabBar[2].tag = 2
-            }
+        }
     }
 }

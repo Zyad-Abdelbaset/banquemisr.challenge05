@@ -33,6 +33,7 @@ final class TestMovieDetailsViewModel: XCTestCase {
     
     func testFetchImage(){
         let exp = expectation(description: "Waiting Fetching image")
+        viewModel.model = MovieDetailsEntity(adult: false, backdropPath: "/Asg2UUwipAdE87MxtJy7SQo08XI.jpg", budget: 20000, genres: [], id: 957452, originalLanguage: "en", overview: "Good movie to watch", releaseDate: "2024", runtime: 115, status: "released", title: "The Crow")
         viewModel.getMovieImage { result in
             switch result {
             case .success(let imgData): XCTAssertNotNil(imgData);exp.fulfill()

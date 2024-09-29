@@ -22,7 +22,6 @@ class MovieDetailsViewModel{
         fetchMovieDetails()
     }
     func getMovieImage(completion:@escaping (Result<Data,MovieError>)->Void){
-        self.model = MovieDetailsEntity(adult: true, backdropPath: "/7h6TqPB3ESmjuVbxCxAeB1c9OB1.jpg", budget: 2000, genres: [], id: 1234, originalLanguage: "en", overview: "Good movie", releaseDate: "2024", runtime: 140, status: "released", title: "The Substance")
         movieRepo.getMovieImage(imgPath: self.model!.backdropPath) { result in
             switch result {
             case .success(let data): completion(.success(data))

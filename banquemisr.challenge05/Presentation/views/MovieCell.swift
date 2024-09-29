@@ -9,6 +9,7 @@ import UIKit
 
 class MovieCell: UITableViewCell {
     
+    @IBOutlet weak var indicator: UIActivityIndicatorView!
     @IBOutlet weak var lblVoteCount: UILabel!
     @IBOutlet weak var lblAvgVote: UILabel!
     @IBOutlet weak var lblDate: UILabel!
@@ -30,10 +31,13 @@ class MovieCell: UITableViewCell {
         imgView.layer.cornerRadius=20
         lblTitle.text=viewModel.model.title
         lblDate.text=viewModel.model.releaseDate
+        indicator.startAnimating()
         viewModel.getMovieImage(completion: { result in
             switch result{
             case .success(let data): DispatchQueue.main.async {
                 self.imgView.image = UIImage(data: data)
+                self.indicator.stopAnimating()
+                self.indicator.hideActivityIndicator()
             }
             case .failure(_):DispatchQueue.main.async {
                 self.imgView.image = UIImage(named: "defaultImage")

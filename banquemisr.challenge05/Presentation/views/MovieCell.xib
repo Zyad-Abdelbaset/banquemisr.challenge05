@@ -3,6 +3,7 @@
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22685"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -31,13 +32,20 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="AMR-Kq-gis">
+                        <rect key="frame" x="49.666666666666664" y="82.666666666666671" width="19.999999999999993" height="20"/>
+                        <color key="tintColor" name="LaunchAccentColor"/>
+                        <color key="color" name="LaunchAccentColor"/>
+                    </activityIndicatorView>
                 </subviews>
                 <constraints>
                     <constraint firstItem="6yZ-Ef-hcW" firstAttribute="leading" secondItem="eQl-mk-nDH" secondAttribute="trailing" constant="4" id="1jg-fP-Sg4"/>
+                    <constraint firstItem="AMR-Kq-gis" firstAttribute="centerY" secondItem="eQl-mk-nDH" secondAttribute="centerY" id="1sG-Um-ZWb"/>
                     <constraint firstItem="eQl-mk-nDH" firstAttribute="height" secondItem="H2p-sc-9uM" secondAttribute="height" multiplier="0.9" id="5pM-fx-Q2x"/>
                     <constraint firstItem="eQl-mk-nDH" firstAttribute="width" secondItem="H2p-sc-9uM" secondAttribute="width" multiplier="0.219249" id="CbO-Dz-SZb"/>
                     <constraint firstItem="eQl-mk-nDH" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="OXL-bt-fth"/>
                     <constraint firstItem="eQl-mk-nDH" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="RIP-fu-Skd"/>
+                    <constraint firstItem="AMR-Kq-gis" firstAttribute="centerX" secondItem="eQl-mk-nDH" secondAttribute="centerX" id="SW9-EP-BaN"/>
                     <constraint firstItem="6yZ-Ef-hcW" firstAttribute="width" secondItem="H2p-sc-9uM" secondAttribute="width" multiplier="0.466488" id="YGL-3W-1l0"/>
                     <constraint firstItem="6yZ-Ef-hcW" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="20" id="ZKK-Cp-T8j"/>
                     <constraint firstItem="QeF-3g-Ghf" firstAttribute="width" secondItem="H2p-sc-9uM" secondAttribute="width" multiplier="0.450402" id="epM-Te-eZg"/>
@@ -48,10 +56,16 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="imgView" destination="eQl-mk-nDH" id="P5V-cz-x1a"/>
+                <outlet property="indicator" destination="AMR-Kq-gis" id="tSo-ca-GsN"/>
                 <outlet property="lblDate" destination="QeF-3g-Ghf" id="QtZ-ru-Sfp"/>
                 <outlet property="lblTitle" destination="6yZ-Ef-hcW" id="ltU-Hx-Rh2"/>
             </connections>
             <point key="canvasLocation" x="241.22137404580153" y="41.197183098591552"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <namedColor name="LaunchAccentColor">
+            <color red="0.98000001907348633" green="0.81199997663497925" blue="0.98799997568130493" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
 </document>

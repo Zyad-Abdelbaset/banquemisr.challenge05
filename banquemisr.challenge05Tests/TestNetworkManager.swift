@@ -22,6 +22,7 @@ final class TestNetworkManager: XCTestCase {
                 exp.fulfill();
             }else{
                 XCTFail("Faild test")
+                exp.fulfill();
             }
         }
         waitForExpectations(timeout: 3)

@@ -9,6 +9,9 @@ import UIKit
 
 class MovieDetailsViewController: UIViewController {
 
+    @IBOutlet weak var indicator: UIActivityIndicatorView!
+    
+    
     @IBOutlet weak var imgViewNoData: UIImageView!
     @IBOutlet weak var lblOverView: UILabel!
     @IBOutlet weak var lblRunTime: UILabel!
@@ -29,6 +32,7 @@ class MovieDetailsViewController: UIViewController {
             self.imgViewNoData.isHidden = false
             
         }
+        indicator.startAnimating()
         viewModel.putData={
             print(self.viewModel.movieId)
             self.lblTitle.text = self.viewModel.model!.title+"\(self.viewModel.model!.adult ? "(+18)" : "")"
@@ -48,6 +52,8 @@ class MovieDetailsViewController: UIViewController {
                 switch result{
                 case .success(let data): DispatchQueue.main.async {
                     self.imgViewPoster.image = UIImage(data: data)
+                    self.indicator.stopAnimating()
+                    self.indicator.hideActivityIndicator()
                 }
                 case .failure(_):DispatchQueue.main.async {
                     self.imgViewPoster.image = UIImage(named: "defaultImage")

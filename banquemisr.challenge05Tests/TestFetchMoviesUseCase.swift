@@ -20,7 +20,7 @@ final class TestFetchMoviesUseCase: XCTestCase {
         fetchMovieUseCase.execute(endPoint: .nowPlaying) { result, flag in
             switch result{
             case .success(let arr): XCTAssertNotEqual(arr.count, 0);exp.fulfill()
-            case .failure(let error): XCTAssertNotNil(error)
+            case .failure(let error): XCTAssertNotNil(error);exp.fulfill();
             }
         }
         waitForExpectations(timeout: 3)

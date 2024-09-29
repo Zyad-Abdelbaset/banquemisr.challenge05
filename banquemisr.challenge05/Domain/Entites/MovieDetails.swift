@@ -8,15 +8,15 @@
 import Foundation
 // MARK: - MoviesResponse1
 struct MovieDetailsEntity: Codable {
-    let adult: Bool //-
-    let backdropPath: String //-
-    let budget: Int //-
-    let genres: [Genre] //-
-    let id: Int //-
-    let originalLanguage, overview: String //-
-    let releaseDate: String //-
-    let runtime: Int //-
-    let status, title: String //-
+    let adult: Bool
+    let backdropPath: String
+    let budget: Int
+    let genres: [Genre]
+    let id: Int
+    let originalLanguage, overview: String
+    let releaseDate: String
+    let runtime: Int
+    let status, title: String 
 
     enum CodingKeys: String, CodingKey {
         case adult
